@@ -1,5 +1,7 @@
-class Elmo():
-    def __init__(self):
+from hard_ware.serialcom import SerialCom
+class Elmo(SerialCom):
+    def __init__(self,port='com6'):
+        super().__init__(port)
         self.z=0
 
     def move(self, dz):
@@ -27,5 +29,18 @@ class Elmo():
 
     def get_ana_in(self,record_time_ms):
         signal=[0,0,0]
-
         return signal
+
+    def decode_com_rev(self,data):
+        print(data)
+
+
+
+if __name__ == '__main__':
+    se = Elmo(port='com6')
+    se.port_open()
+    # a=input("输入要发送的数据：")
+    a = 'MS;'
+    data=se.send(a)
+    se.decode_com_rev( data)
+    se.port_close()

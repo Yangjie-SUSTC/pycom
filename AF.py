@@ -4,9 +4,10 @@
 from hard_ware import elmo
 from hard_ware import xy_stage
 import numpy as np
+from hard_ware import serialcom
 class AF():
     def __init__(self):
-        self.elmo=elmo.Elmo()
+        self.elmo=elmo.Elmo(port='com6')
         self.xy_stage=xy_stage.XyStage()
         pass
     def get_xyz(self):
@@ -94,8 +95,8 @@ class SinglePointData():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    af=AF()
-    data_list=af.static_test()
+    af = AF()
+    data_list = af.static_test()
     print('finish')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
